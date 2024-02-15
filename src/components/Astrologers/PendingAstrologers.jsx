@@ -1,12 +1,14 @@
-import { Box, Typography, colors, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import React from "react";
 import { tokens } from "../../Theme/Theme";
+import Header from "../Header/Header";
 import { DataGrid } from "@mui/x-data-grid";
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 import VerifiedOutlinedIcon from "@mui/icons-material/VerifiedOutlined";
-import Header from "../Header/Header";
-const Astrologers = ({ astrologers }) => {
+
+const PendingAstrologers = ({ astrologers }) => {
+  console.log(astrologers);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
@@ -71,10 +73,11 @@ const Astrologers = ({ astrologers }) => {
     ...astrologer,
     index: index + 1,
   }));
-  const string = `Total Astrologers ${astrologers.length}`;
+  const string = `Pending Astrologers application ${astrologers.length}`;
+
   return (
     <Box m="20px">
-      <Header title="Astrologers" subtitle={string} />
+      <Header title="Pending Applications" subtitle={string} />
       <Box m="40px 0 0 0" height="75vh">
         {astrologers.length > 0 ? (
           <DataGrid
@@ -100,4 +103,4 @@ const Astrologers = ({ astrologers }) => {
   );
 };
 
-export default Astrologers;
+export default PendingAstrologers;

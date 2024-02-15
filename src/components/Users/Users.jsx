@@ -1,17 +1,20 @@
-import { Box, Typography, colors, useTheme } from "@mui/material";
-import React from "react";
+import { Box, Button, Typography, colors, useTheme } from "@mui/material";
+import React, { useState } from "react";
 import { tokens } from "../../Theme/Theme";
 import { DataGrid } from "@mui/x-data-grid";
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 import VerifiedOutlinedIcon from "@mui/icons-material/VerifiedOutlined";
 import Header from "../Header/Header";
-const Astrologers = ({ astrologers }) => {
+import HighlightOffOutlinedIcon from "@mui/icons-material/HighlightOffOutlined";
+
+const Users = ({ users }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
   const columns = [
     { field: "index", headerName: "#", width: 80 },
-    { field: "_id", headerName: "Astrologer ID", hide: true, width: 200 },
+    { field: "_id", headerName: "User ID", hide: true, width: 200 },
     {
       field: "name",
       headerName: "Name",
@@ -53,30 +56,31 @@ const Astrologers = ({ astrologers }) => {
             p="5px"
             display="flex"
             justifyContent="center"
-            backgroundColor={colors.greenAccent[600]}
             borderRadius="4px"
+            backgroundColor={colors.greenAccent[600]}
           >
-            {role === "verified" && <VerifiedOutlinedIcon />}
-            {role === "pending" && <LockOpenOutlinedIcon />}
-
+            {role === "user" && <VerifiedOutlinedIcon />}
             <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>
-              Verified
+              Enabled
             </Typography>
           </Box>
         );
       },
     },
   ];
-  const rows = astrologers.map((astrologer, index) => ({
-    ...astrologer,
+
+  const rows = users.map((user, index) => ({
+    ...user,
     index: index + 1,
   }));
-  const string = `Total Astrologers ${astrologers.length}`;
+
+  const string = `Total Users ${users.length}`;
+
   return (
     <Box m="20px">
-      <Header title="Astrologers" subtitle={string} />
+      <Header title="User" subtitle={string} />
       <Box m="40px 0 0 0" height="75vh">
-        {astrologers.length > 0 ? (
+        {users.length > 0 ? (
           <DataGrid
             rows={rows}
             columns={columns}
@@ -100,4 +104,4 @@ const Astrologers = ({ astrologers }) => {
   );
 };
 
-export default Astrologers;
+export default Users;
