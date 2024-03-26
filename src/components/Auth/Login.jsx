@@ -63,8 +63,7 @@ function Login() {
           const userId = res.data.userId;
           const role = res.data.role;
           localStorage.setItem("authToken", token);
-          // localStorage.setItem("userId", userId);
-          // localStorage.setItem("role", role);
+
           console.log(token, userId, role);
           window.location.reload();
         });
@@ -108,7 +107,21 @@ function Login() {
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
-        />
+        >
+          <Box sx={{ m: 20, alignItems: "center", textAlign: "center" }}>
+            <Typography
+              variant="h1"
+              color={colors.redAccent[600]}
+              style={{
+                fontWeight: "700",
+                fontFamily: "Oswald",
+                textDecoration: "underline",
+              }}
+            >
+              Astrogini
+            </Typography>
+          </Box>
+        </Grid>
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box
             sx={{
